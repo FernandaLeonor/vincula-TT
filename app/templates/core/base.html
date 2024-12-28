@@ -8,17 +8,17 @@
             <li class="divider"></li>
             {% if user.is_authenticated %}
             <li>
-                <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                <form method="post" action="{% url 'logout' %}" style="margin: 0;">
                     {% csrf_token %}
-                    <button type="submit" style="border: none; background: none; cursor: pointer; padding: 0; margin: 0; font: inherit; color: inherit;">
-                        <i class="material-icons small">person_outline</i> 
+                    <button type="submit" class="dropdown-item" style="border: none; background: none; cursor: pointer; padding: 0; margin: 0; font: inherit; color: inherit;">
+                        <i class="material-icons small">person_outline</i>
                         {% translate "Logout" context "Base core template message" %}
                     </button>
                 </form>
             </li>
             {% else %} 
             <li><a href={% url 'login' %}><i class="material-icons small ">person_outline</i> {% translate "Login" context "Base core template message" %}</a></li>
-            <li><a href={% url 'user-create' %}><i class="material-icons small ">person_outline</i> {% translate "Create" context "Base core template message" %}</a></li>
+            <li><a href={% url 'user-create' %}><i class="material-icons small ">person_add</i> {% translate "Create" context "Base core template message" %}</a></li>
             {% endif %}
         </ul>
         <nav>
@@ -34,20 +34,34 @@
             <li class="divider"></li>
             {% if user.is_authenticated %}
             <li>
-                <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                <form method="post" action="{% url 'logout' %}" style="margin: 0;">
                     {% csrf_token %}
-                    <button type="submit" style="border: none; background: none; cursor: pointer; padding: 0; margin: 0; font: inherit; color: inherit;">
-                        <i class="material-icons small">person_outline</i> 
+                    <button type="submit" class="dropdown-item" style="border: none; background: none; cursor: pointer; padding: 0; margin: 0; font: inherit; color: inherit;">
+                        <i class="material-icons small">person_outline</i>
                         {% translate "Logout" context "Base core template message" %}
                     </button>
                 </form>
             </li>
             {% else %} 
             <li><a href={% url 'login' %}><i class="material-icons small ">person_outline</i> {% translate "Login" context "Base core template message" %}</a></li>
-            <li><a href={% url 'user-create' %}><i class="material-icons small ">person_outline</i> {% translate "Create" context "Base core template message" %}</a></li>
+            <li><a href={% url 'user-create' %}><i class="material-icons small ">person_add</i> {% translate "Create" context "Base core template message" %}</a></li>
             {% endif %}
         </ul>
     </div>
+    <style>
+        .dropdown-content form button {
+            display: flex;
+            align-items: center;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+            font: inherit;
+            color: inherit;
+            text-align: left;
+        }
+        </style>
     {% block core_content %}
     {% endblock %}
 {% endblock %}

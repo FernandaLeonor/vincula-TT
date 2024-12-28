@@ -12,10 +12,11 @@ def list_tt(request):
         filterset_class=TrabajosTerminalesFilterSet,
         model_list=TrabajosTerminales,
         fields_table={
-            pgettext_lazy("Field table", "ID"): "pk",
+            pgettext_lazy("Field table", "ID"): "id",
             pgettext_lazy("Field table", "Title"): "titulo",
             pgettext_lazy("Field table", "TT Number"): "numero_tt",
             pgettext_lazy("Field table", "File"): "escrito.url",
+            pgettext_lazy("Field table", "Detail"): "pk",
         },
         boolean_fields=[],
         url_variable="tt-update",
@@ -40,5 +41,5 @@ def create_or_update_tt(request,pk=None):
         delete_url="",
         model_name=pgettext_lazy("Create or update view title", "TT"),
         form_class=TrabajosTerminalesForm,
-        can_submit=not request.user.is_authenticated,
+        can_submit=request.user.is_authenticated,
         )

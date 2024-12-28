@@ -22,7 +22,7 @@ def list(
     )
     filterset_form = filterset.form
     qs = filterset.qs
-    paginator = Paginator(qs, 25)
+    paginator = Paginator(qs, 5)
     page_number = request.GET.get("page", 1)
     qs = paginator.get_page(page_number)
     ctx = {

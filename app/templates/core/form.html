@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col s12 m12 l4 xl4"></div>
         <div class="col s12 m12 l4 xl4">
-            <h4>{% if pk %} {% translate "Update" context "Form core template message" %} {% else %} {% translate "Create" context "Form core template message" %} {% endif %} {{ model_name|default:"Objeto" }}{% if pk %}: {{pk}} {% endif %}</h4>
+            <h4>{% if pk %} {% translate "Detail" context "Form core template message" %} {% else %} {% translate "Create" context "Form core template message" %} {% endif %} {{ model_name|default:"Objeto" }}{% if pk %}: {{pk}} {% endif %}</h4>
             <form method="post" action={% if pk %}  {% url url_variable pk=pk %} {% else %} {% url url_variable %} {% endif %}
             enctype="multipart/form-data">
                 {% csrf_token %}
@@ -16,6 +16,8 @@
                                     {{ field }} <span>{{ field.label }}</span>
                                 </label>
                             </p>
+                        {% elif field.field.widget.input_type == "hidden" %}
+                            {{ field }}
                         {% else %}
                         <p class="input-field">
                             {{ field.label }}
@@ -28,7 +30,7 @@
                 {% if cancel_url %}
                     <a class="waves-effect waves-light btn red darken-4" href={% url cancel_url %}>{% translate "Cancel" context "Form core template message" %}</a>
                     {% endif %}
-                   {% if not can_submit %}
+                   {% if can_submit %}
                     <button type="submit" class="waves-effect waves-light pink darken-4 btn">{% if pk %} {% translate "Update" context "Form core template message" %} {% else %} {% translate "Create" context "Form core template message" %} {% endif %}</button>
                     {% endif %}
                     {% if request.user.is_superuser and pk and delete_url %}

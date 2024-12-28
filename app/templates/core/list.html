@@ -35,9 +35,9 @@
                                                 <i class="material-icons red accent-4">close</i>
                                             {% endif %}
                                         {% elif field == 'pk' and url_variable %}
-                                            <a href={% url url_variable pk=obj|getattr:field %}> {{ obj|getattr:field }} </a>
+                                            <a href={% url url_variable pk=obj|getattr:field %}><i class="material-icons small pink-text text-darken-4">more_horiz</i></a>
                                         {% elif field in file_fields %}
-                                            <a href="{{ obj|getattr:field }}" target="_blank">{% translate "Download" context "List core template message" %}</a>
+                                            <a href="{{ obj|getattr:field }}" target="_blank"><i class="material-icons small pink-text text-darken-4">visibility</i></a>
                                         {% else %}
                                             {{ obj|getattr:field }}
                                         {% endif %}

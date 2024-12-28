@@ -2,6 +2,7 @@ from django import forms
 from apps.vincula_tt.models import *
 
 class TrabajosTerminalesForm(forms.ModelForm):
+    creado_por=forms.CharField(widget=forms.HiddenInput(),required=False)
     class Meta:
         model = TrabajosTerminales
         fields = ["titulo",
@@ -13,6 +14,7 @@ class TrabajosTerminalesForm(forms.ModelForm):
     "anio",
     "palabras_clave",
     "resumen",
+    "creado_por",
     ]
 
     def __init__(self, *args, **kwargs):

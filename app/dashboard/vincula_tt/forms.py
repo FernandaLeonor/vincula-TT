@@ -33,6 +33,8 @@ class TrabajosTerminalesForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         instance = self.instance
+        if instance:
+            cleaned_data["creado_por"] = instance.creado_por
         if instance and instance.creado_por and not instance.es_duenio(self.request.user):
             self.add_error("creado_por","No puedes editar este Trabajo Terminal")
         return cleaned_data

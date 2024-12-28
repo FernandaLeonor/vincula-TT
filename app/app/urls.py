@@ -38,8 +38,8 @@ urlpatterns = [
         name="rest_framework_logout",
     ),
     path("", include("dashboard.urls")),
-    
+    # API
+    path("api/v1/", include(("api.urls", "api"), namespace="api")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

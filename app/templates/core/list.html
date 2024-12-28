@@ -1,0 +1,80 @@
+{% load custom_filters %}
+{% load i18n %}
+
+    <div class="col s12 m12 x9 xl9">
+        {% if url_create_variable %}
+            <div class="col s10 m11 x11 xl11"></div>
+            <div class="col s2 m1 x1 xl1">
+                <a class="btn-floating waves-effect waves-light cyan darken-4" href={% url url_create_variable %}><i class="material-icons">add</i></a>
+            </div>
+        {% endif %}
+        <div class="col s12 m12 x12 xl12">
+            {% if qs %}
+
+                <table class="responsive-table centered">
+                    <thead>
+                        <tr>
+
+                            {% for head in fields_table.keys %}
+                                <th>{{head}}</th>
+                            {% endfor %}
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for obj in qs %}
+
+                            <tr>
+                                {% for field in fields_table.values %}
+                                    <td>
+                                        {% if field in boolean_fields %}
+                                            {% if obj|getattr:field %}
+                                                <i class="material-icons teal accent-3">check</i>
+                                            {% else %}
+                                                <i class="material-icons red accent-4">close</i>
+                                            {% endif %}
+                                        {% elif field == 'pk' and url_variable %}
+                                            <a href={% url url_variable pk=obj|getattr:field %}> {{ obj|getattr:field }} </a>
+                                        {% elif field in file_fields %}
+                                            <a href="{{ obj|getattr:field }}" target="_blank">{% translate "Download" context "List core template message" %}</a>
+                                        {% else %}
+                                            {{ obj|getattr:field }}
+                                        {% endif %}
+                                        </td>
+                                {% endfor %}
+                            </tr>                        
+                            {% endfor %}
+                    </tbody>
+                </table>
+
+                <ul class="pagination">
+                    {% if qs.has_previous %}
+                        <li class="waves-effect"><a href="?{% url_replace page=qs.previous_page_number %}"><i class="material-icons">chevron_left</i></a></li>
+                        <li class="waves-effect"><a href="?{% url_replace page=1 %}">{% translate "First" context "List core template message" %}</a></li>
+                        <li class="waves-effect"><a href="?{% url_replace page=qs.previous_page_number %}">{% translate "Previous" context "List core template message" %}</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    {% endif %}
+
+                    <li class="active pink darken-4"><a href="#!">{% translate "Page" context "List core template message" %} {{ qs.number }} {% translate "of" context "List core template message" %} {{ qs.paginator.num_pages }}</a></li>
+
+                    {% if qs.has_next %}
+                        <li class="waves-effect"><a href="?{% url_replace page=qs.next_page_number %}">{% translate "Next" context "List core template message" %}</a></li>
+                        <li class="waves-effect"><a href="?{% url_replace page=qs.paginator.num_pages %}">{% translate "Last" context "List core template message" %}</a></li>
+                        <li class="waves-effect"><a href="?{% url_replace page=qs.next_page_number %}"><i class="material-icons">chevron_right</i></a></li>
+                    {% else %}
+                        <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    {% endif %}
+                </ul>
+        {% else %}
+
+        {% translate "Nothing here" context "List core template message" %}
+
+    {% endif %}
+
+</div>
+</div>
+<div class="col s12 m12 x3 xl3">
+{% include 'core/filter.html' with filterset_form=filterset_form %}
+</div>

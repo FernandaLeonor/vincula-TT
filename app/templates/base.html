@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    <title>{% block title %}Base{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* label focus color */
+        .input-field input[type=text]:focus + label {
+            color: #03a9f4 !important; /* pink darken-4 */
+          }
+          /* label underline focus color */
+          .input-field input[type=text]:focus {
+            border-bottom: 1px solid #03a9f4 !important; /* pink darken-4 */
+            box-shadow: 0 1px 0 0 #03a9f4 !important; /* pink darken-4 */
+          }
+        /* Add styles for other input types as needed */
+        .input-field input[type=password]:focus + label,
+        .input-field input[type=email]:focus + label {
+            color: #03a9f4 !important; 
+        }
+        .input-field input[type=password]:focus,
+        .input-field input[type=email]:focus {
+            border-bottom: 1px solid #03a9f4 !important;
+            box-shadow: 0 1px 0 0 #03a9f4 !important;
+        }
+        .input-field input[type=text].valid {
+            border-bottom: 1px solid #64ffda  !important; /* Pink darken-4 for underline */
+            box-shadow: 0 1px 0 0 #64ffda  !important; /* Pink darken-4 for shadow */
+        }
+        .input-field input[type=text].valid + label {
+            color: #64ffda  !important; /* Pink darken-4 for label text */
+        }
+        /* Repeat for other input types as needed */
+        .input-field input[type=password].valid,
+        .input-field input[type=email].valid {
+            border-bottom: 1px solid #64ffda  !important;
+            box-shadow: 0 1px 0 0 #64ffda  !important;
+        }
+        .input-field input[type=password].valid + label,
+        .input-field input[type=email].valid + label {
+            color: #64ffda  !important;
+        }
+        /* Custom styles for invalid input fields */
+        .input-field input[type=text].invalid,
+        .input-field input[type=password].invalid,
+        .input-field input[type=email].invalid {
+            border-bottom: 1px solid #ff1744 !important; /* Red accent-2 for underline */
+            box-shadow: 0 1px 0 0 #ff1744 !important; /* Red accent-2 for shadow */
+        }
+        .input-field input[type=text].invalid + label,
+        .input-field input[type=password].invalid + label,
+        .input-field input[type=email].invalid + label {
+            color: #ff1744 !important; /* Red accent-2 for label text */
+        }
+    </style>
+</head>
+<body>
+{% if form.errors %}
+    <script>
+        $(document).ready(function(){
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    M.toast({html: '{{ error|escapejs }}', classes: 'rounded red white-text'});
+                {% endfor %}
+            {% endfor %}
+        });
+    </script>
+{% endif %}
+{% if messages %}
+    <script>
+        $(document).ready(function(){
+            {% for errors in messages %}
+                {% if errors.level_tag == 'error' %}
+                    M.toast({html: '{{ errors|escapejs }}', classes: 'rounded red white-text'});
+                {% else %}
+                    M.toast({html: '{{ errors|escapejs }}', classes: 'rounded teal darken-4'});
+                {% endif %}
+            {% endfor %}
+        });
+    </script>
+{% endif %}
+{% block content %}
+{% endblock %}
+
+<script>
+    $(document).ready(function() {
+        $('input#input_text, textarea#textarea2').characterCounter();
+    });
+    $(".dropdown-trigger").dropdown({ hover: true,constrainWidth:false});
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
+    });
+    $(document).ready(function(){
+        $('select').formSelect();
+    });
+    $(document).ready(function(){
+        $('.timepicker').timepicker({twelveHour:false});
+    });
+    $(document).ready(function(){
+        $('.datepicker').datepicker({format:"yyyy-m-d"});
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        var button = document.getElementById('clear_filter_button');
+        if (button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevents the default anchor behavior
+                var currentUrl = window.location.href;
+                var cleanUrl = currentUrl.split('?')[0]; // Removes any query parameters
+                window.location.href = cleanUrl; // Redirects to the cleaned URL
+            });
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}Base core{% endblock %}
+{% block content %}
+    <div class="row">
+        <ul id="dropdown-menu" class="dropdown-content">
+            <li><a href={% url 'tt-list' %}><i class="material-icons small">home</i>  {% translate "Home" context "Base core template message" %}</a></li>
+            <li class="divider"></li>
+            {% if user.is_authenticated %}
+            <li>
+                <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="border: none; background: none; cursor: pointer; padding: 0; margin: 0; font: inherit; color: inherit;">
+                        <i class="material-icons small">person_outline</i> 
+                        {% translate "Logout" context "Base core template message" %}
+                    </button>
+                </form>
+            </li>
+            {% else %} 
+            <li><a href={% url 'login' %}><i class="material-icons small ">person_outline</i> {% translate "Login" context "Base core template message" %}</a></li>
+            <li><a href={% url 'user-create' %}><i class="material-icons small ">person_outline</i> {% translate "Create" context "Base core template message" %}</a></li>
+            {% endif %}
+        </ul>
+        <nav>
+            <div class="nav-wrapper pink darken-4">
+                <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons small">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a class="dropdown-trigger" href="#" data-target="dropdown-menu"><i class="material-icons small right">arrow_drop_down</i>{% translate "Menu" context "Base core template message" %}</a></li>
+                </ul>
+            </div>
+        </nav>   
+        <ul class="sidenav" id="mobile-menu">
+            <li><a href={% url 'tt-list' %}><i class="material-icons small">home</i>  {% translate "Home" context "Base core template message" %}</a></li>
+            <li class="divider"></li>
+            {% if user.is_authenticated %}
+            <li>
+                <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="border: none; background: none; cursor: pointer; padding: 0; margin: 0; font: inherit; color: inherit;">
+                        <i class="material-icons small">person_outline</i> 
+                        {% translate "Logout" context "Base core template message" %}
+                    </button>
+                </form>
+            </li>
+            {% else %} 
+            <li><a href={% url 'login' %}><i class="material-icons small ">person_outline</i> {% translate "Login" context "Base core template message" %}</a></li>
+            <li><a href={% url 'user-create' %}><i class="material-icons small ">person_outline</i> {% translate "Create" context "Base core template message" %}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    {% block core_content %}
+    {% endblock %}
+{% endblock %}

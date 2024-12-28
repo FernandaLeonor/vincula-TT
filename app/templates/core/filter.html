@@ -1,0 +1,15 @@
+<form method="get">
+    {% for field in filterset_form %}
+        <p>
+            {% if field.field.widget.input_type == "checkbox" %}
+                <label>
+                    {{ field }} <span>{{ field.label }}</span>
+                </label>
+            {% else %}
+                {{ field.label_tag }} {{ field }}
+            {% endif %}
+        </p>
+    {% endfor %}
+    <button type="submit" class="waves-effect waves-light light-blue darken-4 btn"><i class="material-icons">search</i> </button>
+    <a class="waves-effect waves-light red darken-4 btn" id="clear_filter_button"><i class="material-icons">clear</i> </a>
+</form>

@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block core_content %}
+    <div class="row">   
+        <div class="col s12 m12 x12 xl12">
+            {% include "core/list.html" with qs=qs filterset_form=filterset_form fields_table=fields_table boolean_fields=boolean_fields %}
+        </div>
+    </div>
+{% endblock %}

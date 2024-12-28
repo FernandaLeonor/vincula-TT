@@ -1,0 +1,154 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-24 21:35-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
+#: app/apps/application_user/models.py:12
+msgctxt "User manager Exception"
+msgid "First you need to provide an email for continue"
+msgstr "Primero necesitas proporcionar un correo electrónico para continuar"
+
+#: app/apps/application_user/models.py:29
+msgctxt "User model field"
+msgid "email"
+msgstr "correo electrónico"
+
+#: app/apps/application_user/models.py:38
+msgctxt "User model meta"
+msgid "User"
+msgstr "Usuario"
+
+#: app/apps/application_user/models.py:39
+msgctxt "User model meta"
+msgid "Users"
+msgstr "Usuarios"
+
+#: app/core/views.py:55
+msgctxt "Create or update view message"
+msgid "Creation Success"
+msgstr "Creación exitosa"
+
+#: app/core/views.py:59
+msgctxt "Create or update view message"
+msgid "Update Success"
+msgstr "Actualización exitosa"
+
+#: app/core/views.py:90
+msgctxt "Delete view message"
+msgid "Deletion Success"
+msgstr "Eliminación exitosa"
+
+#: app/dashboard/login/forms.py:9
+msgid "Password"
+msgstr "Contraseña"
+
+#: app/dashboard/vincula_tt/views.py:14
+msgctxt "Field table"
+msgid "ID"
+msgstr "ID"
+
+#: app/dashboard/vincula_tt/views.py:15
+msgctxt "Field table"
+msgid "Title"
+msgstr "Título"
+
+#: app/dashboard/vincula_tt/views.py:16
+msgctxt "Field table"
+msgid "TT Number"
+msgstr "Número de TT"
+
+#: app/dashboard/vincula_tt/views.py:21
+msgctxt "List view title"
+msgid "List of TT"
+msgstr "Lista de TT"
+
+#: app/templates/core/base.html:7 app/templates/core/base.html:20
+msgctxt "Base core template message"
+msgid "Home"
+msgstr "Inicio"
+
+#: app/templates/core/base.html:9 app/templates/core/base.html:22
+msgctxt "Base core template message"
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+#: app/templates/core/base.html:15
+msgctxt "Base core template message"
+msgid "Menu"
+msgstr "Menú"
+
+#: app/templates/core/form.html:8 app/templates/core/form.html:30
+msgctxt "Form core template message"
+msgid "Update"
+msgstr "Actualizar"
+
+#: app/templates/core/form.html:8 app/templates/core/form.html:30
+msgctxt "Form core template message"
+msgid "Create"
+msgstr "Crear"
+
+#: app/templates/core/form.html:28
+msgctxt "Form core template message"
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: app/templates/core/form.html:32
+msgctxt "Form core template message"
+msgid "Delete"
+msgstr "Eliminar"
+
+#: app/templates/core/list.html:52
+msgctxt "List core template message"
+msgid "First"
+msgstr "Primero"
+
+#: app/templates/core/list.html:53
+msgctxt "List core template message"
+msgid "Previous"
+msgstr "Anterior"
+
+#: app/templates/core/list.html:58
+msgctxt "List core template message"
+msgid "Page"
+msgstr "Página"
+
+#: app/templates/core/list.html:58
+msgctxt "List core template message"
+msgid "of"
+msgstr "de"
+
+#: app/templates/core/list.html:61
+msgctxt "List core template message"
+msgid "Next"
+msgstr "Siguiente"
+
+#: app/templates/core/list.html:62
+msgctxt "List core template message"
+msgid "Last"
+msgstr "Último"
+
+#: app/templates/core/list.html:70
+msgctxt "List core template message"
+msgid "Nothing here"
+msgstr "Nada aquí"
+
+#: app/templates/dashboard/login/main.html:21
+msgctxt "Login base template message"
+msgid "Login"
+msgstr "Iniciar sesión"
+

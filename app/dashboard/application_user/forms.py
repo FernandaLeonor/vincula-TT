@@ -9,3 +9,9 @@ class UserForm(UserCreationForm):
         self.request = kwargs.pop('request', None)
         super(UserForm, self).__init__(*args, **kwargs)
         self.fields['username'].label = "Email"
+     
+    def save(self, commit=True):
+        instance = super().save(commit=commit)
+        instance.email = instance.username
+        instance.save()
+        return instance

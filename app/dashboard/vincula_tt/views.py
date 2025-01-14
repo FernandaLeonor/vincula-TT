@@ -43,3 +43,14 @@ def create_or_update_tt(request,pk=None):
         form_class=TrabajosTerminalesForm,
         can_submit=request.user.is_authenticated,
         )
+    
+@login_required
+def delete_tt(request, pk):
+    return delete(
+        request=request,
+        pk=pk,
+        model=TrabajosTerminales,
+        url_redirect_success="tt-list",
+        url_redirect_error="tt-update",
+        check_owner_field="creado_por",  # Campo que almacena al dueño
+    )

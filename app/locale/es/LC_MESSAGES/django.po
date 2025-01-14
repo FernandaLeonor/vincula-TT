@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-24 21:35-0600\n"
+"POT-Creation-Date: 2024-12-27 22:56-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
+
+#: app/api/v1/application_user/serializers.py:18
+msgctxt "Serializer validation error"
+msgid "This email already exists"
+msgstr "Este correo electrónico ya existe"
+
+#: app/api/v1/application_user/serializers.py:28
+msgctxt "Serializer validation error"
+msgid "The password needs to length more than 8 characters"
+msgstr "La contraseña debe tener más de 8 caracteres"
+
+#: app/api/v1/vincula_tt/serializers.py:76
+msgctxt "Serializer error message"
+msgid "You cannot update this instance because you're not the owner"
+msgstr "No puedes actualizar esta instancia porque no eres el propietario"
+
 #: app/apps/application_user/models.py:12
 msgctxt "User manager Exception"
 msgid "First you need to provide an email for continue"
@@ -38,117 +54,171 @@ msgctxt "User model meta"
 msgid "Users"
 msgstr "Usuarios"
 
-#: app/core/views.py:55
+#: app/core/views.py:57
 msgctxt "Create or update view message"
 msgid "Creation Success"
 msgstr "Creación exitosa"
 
-#: app/core/views.py:59
+#: app/core/views.py:61
 msgctxt "Create or update view message"
 msgid "Update Success"
 msgstr "Actualización exitosa"
 
-#: app/core/views.py:90
+#: app/core/views.py:93
 msgctxt "Delete view message"
 msgid "Deletion Success"
 msgstr "Eliminación exitosa"
+
+#: app/dashboard/application_user/views.py:14
+#: app/dashboard/application_user/views.py:18
+msgctxt "Create or update view title"
+msgid "user"
+msgstr "usuario"
 
 #: app/dashboard/login/forms.py:9
 msgid "Password"
 msgstr "Contraseña"
 
-#: app/dashboard/vincula_tt/views.py:14
+#: app/dashboard/vincula_tt/views.py:15
 msgctxt "Field table"
 msgid "ID"
 msgstr "ID"
 
-#: app/dashboard/vincula_tt/views.py:15
+#: app/dashboard/vincula_tt/views.py:16
 msgctxt "Field table"
 msgid "Title"
 msgstr "Título"
 
-#: app/dashboard/vincula_tt/views.py:16
+#: app/dashboard/vincula_tt/views.py:17
 msgctxt "Field table"
 msgid "TT Number"
 msgstr "Número de TT"
 
-#: app/dashboard/vincula_tt/views.py:21
+#: app/dashboard/vincula_tt/views.py:18
+msgctxt "Field table"
+msgid "File"
+msgstr "Archivo"
+
+#: app/dashboard/vincula_tt/views.py:19
+msgctxt "Field table"
+msgid "Detail"
+msgstr "Detalles"
+
+#: app/dashboard/vincula_tt/views.py:24
 msgctxt "List view title"
 msgid "List of TT"
 msgstr "Lista de TT"
 
-#: app/templates/core/base.html:7 app/templates/core/base.html:20
+#: app/dashboard/vincula_tt/views.py:38 app/dashboard/vincula_tt/views.py:42
+msgctxt "Create or update view title"
+msgid "TT"
+msgstr "TT"
+
+#: app/templates/core/base.html:7 app/templates/core/base.html:33
 msgctxt "Base core template message"
 msgid "Home"
 msgstr "Inicio"
 
-#: app/templates/core/base.html:9 app/templates/core/base.html:22
+#: app/templates/core/base.html:15 app/templates/core/base.html:41
 msgctxt "Base core template message"
 msgid "Logout"
 msgstr "Cerrar sesión"
 
-#: app/templates/core/base.html:15
+#: app/templates/core/base.html:20 app/templates/core/base.html:46
+#, fuzzy
+#| msgctxt "Login base template message"
+#| msgid "Login"
+msgctxt "Base core template message"
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: app/templates/core/base.html:21 app/templates/core/base.html:47
+msgctxt "Base core template message"
+msgid "Singup"
+msgstr "Registrarse"
+
+#: app/templates/core/base.html:28
 msgctxt "Base core template message"
 msgid "Menu"
 msgstr "Menú"
 
-#: app/templates/core/form.html:8 app/templates/core/form.html:30
+#: app/templates/core/form.html:8
 msgctxt "Form core template message"
-msgid "Update"
-msgstr "Actualizar"
+msgid "Detail"
+msgstr "Detalles"
 
-#: app/templates/core/form.html:8 app/templates/core/form.html:30
+#: app/templates/core/form.html:8 app/templates/core/form.html:34
 msgctxt "Form core template message"
 msgid "Create"
 msgstr "Crear"
 
-#: app/templates/core/form.html:28
+#: app/templates/core/form.html:31
 msgctxt "Form core template message"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: app/templates/core/form.html:32
+#: app/templates/core/form.html:34
+msgctxt "Form core template message"
+msgid "Update"
+msgstr "Actualizar"
+
+#: app/templates/core/form.html:37
 msgctxt "Form core template message"
 msgid "Delete"
 msgstr "Eliminar"
 
-#: app/templates/core/list.html:52
+#: app/templates/core/list.html:54
 msgctxt "List core template message"
 msgid "First"
 msgstr "Primero"
 
-#: app/templates/core/list.html:53
+#: app/templates/core/list.html:55
 msgctxt "List core template message"
 msgid "Previous"
 msgstr "Anterior"
 
-#: app/templates/core/list.html:58
+#: app/templates/core/list.html:60
 msgctxt "List core template message"
 msgid "Page"
 msgstr "Página"
 
-#: app/templates/core/list.html:58
+#: app/templates/core/list.html:60
 msgctxt "List core template message"
 msgid "of"
 msgstr "de"
 
-#: app/templates/core/list.html:61
+#: app/templates/core/list.html:63
 msgctxt "List core template message"
 msgid "Next"
 msgstr "Siguiente"
 
-#: app/templates/core/list.html:62
+#: app/templates/core/list.html:64
 msgctxt "List core template message"
 msgid "Last"
 msgstr "Último"
 
-#: app/templates/core/list.html:70
+#: app/templates/core/list.html:72
 msgctxt "List core template message"
 msgid "Nothing here"
 msgstr "Nada aquí"
 
-#: app/templates/dashboard/login/main.html:21
-msgctxt "Login base template message"
+#: app/templates/dashboard/login/main.html:11
+#, fuzzy
+#| msgctxt "Login base template message"
+#| msgid "Login"
+msgctxt "Login card title"
 msgid "Login"
 msgstr "Iniciar sesión"
 
+#: app/templates/dashboard/login/main.html:22
+#, fuzzy
+#| msgctxt "Login base template message"
+#| msgid "Login"
+msgctxt "Login button text"
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: app/templates/dashboard/login/main.html:23
+msgctxt "Form core template message"
+msgid "Sing-Up"
+msgstr "Registrarse"

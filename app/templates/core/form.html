@@ -1,43 +1,59 @@
 {% extends 'core/base.html' %}
 {% load i18n %}
-{% block title %}{{title}}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block core_content %}
     <div class="row">
         <div class="col s12 m12 l4 xl4"></div>
         <div class="col s12 m12 l4 xl4">
-            <h4>{% if pk %} {% translate "Detail" context "Form core template message" %} {% else %} {% translate "Create" context "Form core template message" %} {% endif %} {{ model_name|default:"Objeto" }}{% if pk %}: {{pk}} {% endif %}</h4>
-            <form method="post" action={% if pk %}  {% url url_variable pk=pk %} {% else %} {% url url_variable %} {% endif %}
-            enctype="multipart/form-data">
+            <h4>{% if pk %} 
+                    {% translate "Detail" context "Form core template message" %} 
+                {% else %} 
+                    {% translate "Create" context "Form core template message" %} 
+                {% endif %} 
+                {{ model_name|default:"Objeto" }}{% if pk %}: {{ pk }} {% endif %}
+            </h4>
+            <form method="post" action="{% if pk %} {% url url_variable pk=pk %} {% else %} {% url url_variable %} {% endif %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
-                        {% if field.field.widget.input_type == "checkbox" %}
-                            <p>
-                                <label>
-                                    {{ field }} <span>{{ field.label }}</span>
-                                </label>
-                            </p>
-                        {% elif field.field.widget.input_type == "hidden" %}
-                            {{ field }}
-                        {% else %}
+                    {% if field.field.widget.input_type == "checkbox" %}
+                        <p>
+                            <label>
+                                {{ field }} <span>{{ field.label }}</span>
+                            </label>
+                        </p>
+                    {% elif field.field.widget.input_type == "hidden" %}
+                        {{ field }}
+                    {% else %}
                         <p class="input-field">
                             {{ field.label }}
                             {{ field }}
                             <span class="helper-text" data-error="wrong" data-success="right">{{ field.help_text }} </span>
                         </p>
-                        {% endif %}
-                    
+                    {% endif %}
                 {% endfor %}
                 {% if cancel_url %}
-                    <a class="waves-effect waves-light btn red darken-4" href={% url cancel_url %}>{% translate "Cancel" context "Form core template message" %}</a>
-                    {% endif %}
-                   {% if can_submit %}
-                    <button type="submit" class="waves-effect waves-light pink darken-4 btn">{% if pk %} {% translate "Update" context "Form core template message" %} {% else %} {% translate "Create" context "Form core template message" %} {% endif %}</button>
-                    {% endif %}
-                    {% if request.user.is_superuser and pk and delete_url %}
-                        <a class="waves-effect waves-light btn red darken-2" href={% url delete_url pk=pk %}>{% translate "Delete" context "Form core template message" %}</a>
-                    {% endif %}
-                </form>
-            </div>
-            <div class="col s12 m12 l4 xl4"></div>
+                    <a class="waves-effect waves-light btn red darken-4" href="{% url cancel_url %}">
+                        {% translate "Cancel" context "Form core template message" %}
+                    </a>
+                {% endif %}
+                {% if can_submit %}
+                    <button type="submit" class="waves-effect waves-light pink darken-4 btn">
+                        {% if pk %} 
+                            {% translate "Update" context "Form core template message" %} 
+                        {% else %} 
+                            {% translate "Create" context "Form core template message" %} 
+                        {% endif %}
+                    </button>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <a class="waves-effect waves-light btn red darken-2" 
+                        href="{% url 'tt-delete' pk=pk %}" 
+                        onclick="return confirm('Are you sure you want to delete this TT?')">
+                        {% translate "Delete" context "Form core template message" %}
+                    </a>
+                {% endif %}
+            </form>
         </div>
-    {% endblock %}
+        <div class="col s12 m12 l4 xl4"></div>
+    </div>
+{% endblock %}

@@ -22,7 +22,7 @@ def list(
     )
     filterset_form = filterset.form
     qs = filterset.qs
-    paginator = Paginator(qs, 5)
+    paginator = Paginator(qs, 10)
     page_number = request.GET.get("page", 1)
     qs = paginator.get_page(page_number)
     ctx = {
@@ -51,6 +51,7 @@ def create_or_update(
     model_name=None,
     pk=None,
     can_submit=True,
+    can_delete=False
 ):
     instance = None
     url_variable = url_variable_create
@@ -80,16 +81,37 @@ def create_or_update(
     return render(request, template, context=ctx)
 
 @login_required
-def delete(request, pk, model, url_redirect_success, url_redirect_error):
+def delete(
+    request,
+    pk,
+    model,
+    url_redirect_success,
+    url_redirect_error,
+    check_owner_field=None,
+):
     instance = get_object_or_404(model, pk=pk)
+
+    # Verificar si el usuario es el dueño (opcional)
+    if check_owner_field:
+        owner = getattr(instance, check_owner_field, None)
+        if owner != request.user:
+            messages.error(
+                request,
+                pgettext_lazy(
+                    "Delete view message",
+                    "You do not have permission to delete this object."
+                ),
+            )
+            return redirect(url_redirect_error, pk=pk)
+
     try:
         instance.delete()
+        messages.add_message(
+            request,
+            messages.SUCCESS,
+            pgettext_lazy("Delete view message", "Deletion Success"),
+        )
+        return redirect(url_redirect_success)
     except Exception as e:
-        messages.error(request, e.message)
+        messages.error(request, str(e))
         return redirect(url_redirect_error, pk=pk)
-    messages.add_message(
-        request,
-        messages.SUCCESS,
-        pgettext_lazy("Delete view message", "Deletion Success"),
-    )
-    return redirect(url_redirect_success)
